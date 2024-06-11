@@ -28,13 +28,20 @@ class _LoginPageState extends State<LoginPage> {
 
   //sign in user method
   void sign() async {
-    showDialog(context: context, builder: (context) {
-      return const Center(child: CircularProgressIndicator(),);
-    },);
+    showDialog(context: context,
+      builder: (context) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    },
+    );
+
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: usernamecontroller.text, password: passwordcontroller.text);
+          email: usernamecontroller.text,
+          password: passwordcontroller.text);
       Navigator.pop(context);
+
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
 
@@ -50,6 +57,7 @@ class _LoginPageState extends State<LoginPage> {
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
              title: Text(message),);
+
           //content: Text("Do You Want To Try Again!"),
           // actions: [
           //   CupertinoDialogAction(
